@@ -4,12 +4,12 @@ from random import choice
 
 def getUniqueIndices(indxSet, size=64, **kwargs):
     assert len(indxSet) >= size
-    unique_indices = []
+    uniqueIndices = []
     for i in range(size):
         uniqueIndx = choice(indxSet)
         indxSet.remove(uniqueIndx)
-        unique_indices.append(uniqueIndx)
-    return unique_indices
+        uniqueIndices.append(uniqueIndx)
+    return uniqueIndices
 
 
 def getGenerator(x, y, batchSize, **kwargs):
@@ -19,8 +19,8 @@ def getGenerator(x, y, batchSize, **kwargs):
             yield (x[indxSet], y[indxSet])
             indxSet = list(range(len(x)))
             continue
-        unique_indices = getUniqueIndices(indxSet, batchSize)
-        yield (x[unique_indices], y[unique_indices])
+        uniqueIndices = getUniqueIndices(indxSet, batchSize)
+        yield (x[uniqueIndices], y[uniqueIndices])
 
 
 def getDataGenerator(**kwargs):
