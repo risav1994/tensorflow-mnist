@@ -2,7 +2,7 @@ import tensorflow as tf
 from random import choice
 
 
-def get_unique_indices(indx_set, size=64, **kwargs):
+def getUniqueIndices(indx_set, size=64, **kwargs):
     assert len(indx_set) >= size
     unique_indices = []
     for i in range(size):
@@ -19,7 +19,7 @@ def getGenerator(x, y, batchSize, **kwargs):
             yield (x[indx_set], y[indx_set])
             indx_set = list(range(len(x)))
             continue
-        unique_indices = get_unique_indices(indx_set, batchSize)
+        unique_indices = getUniqueIndices(indx_set, batchSize)
         yield (x[unique_indices], y[unique_indices])
 
 
