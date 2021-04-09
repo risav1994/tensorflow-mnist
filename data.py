@@ -2,24 +2,24 @@ import tensorflow as tf
 from random import choice
 
 
-def getUniqueIndices(indx_set, size=64, **kwargs):
-    assert len(indx_set) >= size
+def getUniqueIndices(indxSet, size=64, **kwargs):
+    assert len(indxSet) >= size
     unique_indices = []
     for i in range(size):
-        unique_indx = choice(indx_set)
-        indx_set.remove(unique_indx)
-        unique_indices.append(unique_indx)
+        uniqueIndx = choice(indxSet)
+        indxSet.remove(uniqueIndx)
+        unique_indices.append(uniqueIndx)
     return unique_indices
 
 
 def getGenerator(x, y, batchSize, **kwargs):
-    indx_set = list(range(len(x)))
+    indxSet = list(range(len(x)))
     while True:
-        if len(indx_set) <= batchSize:
-            yield (x[indx_set], y[indx_set])
-            indx_set = list(range(len(x)))
+        if len(indxSet) <= batchSize:
+            yield (x[indxSet], y[indxSet])
+            indxSet = list(range(len(x)))
             continue
-        unique_indices = getUniqueIndices(indx_set, batchSize)
+        unique_indices = getUniqueIndices(indxSet, batchSize)
         yield (x[unique_indices], y[unique_indices])
 
 
