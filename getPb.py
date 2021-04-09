@@ -38,9 +38,9 @@ def getPb():
                     method_name=tf.saved_model.signature_constants.PREDICT_METHOD_NAME
                 )
             )
-            legacy_init_op = tf.group(
+            legacyInitOp = tf.group(
                 tf.tables_initializer(),
-                name="legacy_init_op"
+                name="legacyInitOp"
             )
             builder.add_meta_graph_and_variables(
                 sess,
@@ -48,7 +48,7 @@ def getPb():
                 signature_def_map={
                     "predict": predictSign,
                 },
-                legacy_init_op=legacy_init_op
+                legacy_init_op=legacyInitOp
             )
             builder.save()
 
